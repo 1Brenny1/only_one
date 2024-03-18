@@ -11,11 +11,11 @@ OnlyOne.Config = {
         https://github.com/FredyH/MySQLOO/releases
     ]]--
     Database = {
-        Host     = "192.168.2.224",
+        Host     = "localhost",
         Port     = 3306,
         Database = "OnlyOne",
         User     = "root",
-        Password = "brenny11"
+        Password = "pswd"
     },
     
     DEBUG = true 
