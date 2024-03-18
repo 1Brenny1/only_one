@@ -13,7 +13,7 @@ hook.Add("PlayerAuthed", "OnlyOne.OnConnect", function(Plr, SteamId, UniqueId)
                     if checkQuery:hasMoreResults() then
                         -- User All Ready Online
                         if OnlyOne.Config.UseCommand then
-                            game.ConsoleCommand(OnlyOne.Config.Command)
+                            game.ConsoleCommand(string.Replace(OnlyOne.Config.Command, "{}", UniqueId))
                         else
                             game.KickID(UniqueId, OnlyOne.Config.kickReason)
                         end
