@@ -9,8 +9,7 @@ MsgC(Color(0,255,0,255), "|---------------|\n")
 MsgC(Color(0,255,0,255), "|   Only  One   |\n")
 MsgC(Color(0,255,0,255), "|---------------|\n")
 
-local success, err = pcall(require, "mysqloo")
-if not success then
+if not util.IsBinaryModuleInstalled("mysqloo") then
     MsgC(Color(255,0,0,255), "| Missing MySqloo\n")
 
     MsgC(Color(255,0,0,255), "|---------------|\n")
