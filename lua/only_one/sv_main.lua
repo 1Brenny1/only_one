@@ -1,30 +1,38 @@
 OnlyOne = OnlyOne or {}
 
-hook.Add("PlayerAuthed", "OnlyOne.OnConnect", function(Plr, SteamId, UniqueId)
-    OnlyOne.SQL.Query("INSERT INTO OnlyOne_"..OnlyOne.Config.Identifier.." (Steam64) VALUES (\""..UniqueId.."\")")
 
-    local query = OnlyOne.SQL.Query("SELECT * FROM OnlyOne_Identifiers WHERE Identifier!=\""..OnlyOne.Config.Identifier.."\"")
-    function query:OnSuccess(data)
-        while query:hasMoreResults() do
-            row = query:getData()[1]
-            for k,v in pairs(row) do
-                local checkQuery = OnlyOne.SQL.Query("SELECT * FROM OnlyOne_"..v.." WHERE Steam64=\"" .. UniqueId .."\"")
-                function checkQuery:OnSuccess(data)
-                    if checkQuery:hasMoreResults() then
-                        -- User All Ready Online
-                        if OnlyOne.Config.UseCommand then
-                            game.ConsoleCommand(string.Replace(OnlyOne.Config.Command, "{}", UniqueId))
-                        else
-                            game.KickID(UniqueId, OnlyOne.Config.kickReason)
-                        end
+hook.Add("PlayerAuthed", "OnlyOne.OnConnect", function(Plr, SteamId, UniqueId)
+    local Steam64 = Plr:SteamID64()
+
+    -- Insert Player Into Current Server
+    OnlyOne.SQL.Query("INSERT INTO OnlyOne_"..OnlyOne.Config.Identifier.." (Steam64) VALUES (\""..Steam64.."\")")
+
+    -- Get All Other Servers
+    local query = OnlyOne.SQL.RawQuery("SELECT * FROM OnlyOne_Identifiers WHERE Identifier!=\""..OnlyOne.Config.Identifier.."\"")
+    
+    function query:onSuccess(data)
+        for i, Server in ipairs(data) do
+            local onlineQuery = OnlyOne.SQL.RawQuery("SELECT * FROM OnlyOne_" .. Server.Identifier .. " WHERE Steam64=\"" .. Steam64 .."\"")
+            function onlineQuery:onSuccess(data)
+                if #data > 0 then
+                    if OnlyOne.Config.UseCommand then
+                        game.ConsoleCommand(string.Replace(OnlyOne.Config.Command, "{}", Steam64))
+                    else
+                        Plr:Kick(OnlyOne.Config.KickReason)
                     end
                 end
             end
-            query:getNextResults()
+            onlineQuery:start()
         end
     end
+    query:start()
 end)
 
 hook.Add("PlayerDisconnected", "OnlyOne.OnDisconnect", function(Plr)
     OnlyOne.SQL.Query("DELETE FROM OnlyOne_"..OnlyOne.Config.Identifier.." WHERE Steam64=\"".. Plr:SteamID64() .."\"")
+end)
+
+hook.Add("ShutDown", "OnlyOne.OnShutdown", function()
+    OnlyOne.SQL.Query("DELETE FROM OnlyOne_Identifiers WHERE Identifier=\"" .. OnlyOne.Config.Identifier .."\"")
+    OnlyOne.SQL.Query("DROP TABLE IF EXISTS OnlyOne_" .. OnlyOne.Config.Identifier)
 end)
