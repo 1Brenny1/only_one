@@ -13,7 +13,7 @@ OnlyOne.Config = {
     Database = {
         Host     = "localhost",
         Port     = 3306,
-        Name     = "OnlyOne",
+        Database = "OnlyOne",
         User     = "root",
         Password = "pswd"
     },

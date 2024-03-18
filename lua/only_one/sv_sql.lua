@@ -7,7 +7,7 @@ OnlyOne.SQL.DB = mysqloo.connect(
     OnlyOne.Config.Database.Host, 
     OnlyOne.Config.Database.User, 
     OnlyOne.Config.Database.Password, 
-    OnlyOne.Config.Database.Name, 
+    OnlyOne.Config.Database.Database, 
     OnlyOne.Config.Database.Port
 )
 
