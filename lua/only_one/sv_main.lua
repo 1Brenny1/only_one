@@ -29,7 +29,10 @@ hook.Add("PlayerAuthed", "OnlyOne.OnConnect", function(Plr, SteamId, UniqueId)
 end)
 
 hook.Add("PlayerDisconnected", "OnlyOne.OnDisconnect", function(Plr)
-    OnlyOne.SQL.Query("DELETE FROM OnlyOne_"..OnlyOne.Config.Identifier.." WHERE Steam64=\"".. Plr:SteamID64() .."\"")
+    local function removeSteam64()
+        OnlyOne.SQL.Query("DELETE FROM OnlyOne_"..OnlyOne.Config.Identifier.." WHERE Steam64=\"".. Plr:SteamID64() .."\"")
+    end
+    timer.Simple(OnlyOne.Config.SteamIdRemoveDelay, removeSteam64)
 end)
 
 hook.Add("ShutDown", "OnlyOne.OnShutdown", function()

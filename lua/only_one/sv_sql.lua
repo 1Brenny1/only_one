@@ -1,7 +1,6 @@
 OnlyOne = OnlyOne or {}
 OnlyOne.SQL = {}
 
-
 require( "mysqloo" )
 
 OnlyOne.SQL.DB = mysqloo.connect(
@@ -27,8 +26,6 @@ function OnlyOne.SQL.Query(str)
     query:start()
     return query
 end
-
-
 
 function OnlyOne.SQL.DB:onConnected()
     OnlyOne.Log("Connected to database!")
