@@ -5,9 +5,6 @@ OnlyOne.Config = {
     Command = "sam kickid {} All ready connected to network!",
     UseCommand = false, -- if false, the user will be kicked with the following reason
     KickReason = "All ready connected to network!",
-
-    -- Time until the user's steam64 is removed on disconnect (in Seconds)
-    SteamIdRemoveDelay = 10,
     
     --[[
         NOTE: This addon requires MySqloo to run
