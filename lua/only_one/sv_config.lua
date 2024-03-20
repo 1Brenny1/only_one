@@ -21,5 +21,5 @@ OnlyOne.Config = {
         Password = "pswd"
     },
     
-    DEBUG = true 
+    DEBUG = false 
 }
