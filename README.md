@@ -1,3 +1,8 @@
+# CHANGE LOG - V0.1.2
+- Added Fancy Colors
+- Set `sv_hibernate_think` to `1` on load
+- Cached SteamId to fix error
+
 # CHANGE LOG - V0.1.1
 - New Startup Message
 - Added SteamId Remove Delay
