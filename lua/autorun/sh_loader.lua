@@ -4,7 +4,7 @@ if CLIENT then
 end
 
 OnlyOne = OnlyOne or {}
-OnlyOne.VERSION = "0.1.2"
+OnlyOne.VERSION = "0.1.2-1"
 
 OnlyOne.Load = function(File)
     include(File)
@@ -34,4 +34,4 @@ OnlyOne.Load("only_one/sv_main.lua")
 
 MsgC(Color(100,100,255,255), "[]=====[ Only One ]=====[]\n")
 
-RunConsoleCommand("sv_hibernate_think", 1)
+--RunConsoleCommand("sv_hibernate_think", 1)
