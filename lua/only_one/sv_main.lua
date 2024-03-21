@@ -2,6 +2,7 @@ OnlyOne = OnlyOne or {}
 
 gameevent.Listen("player_connect")
 hook.Add("player_connect", "OnlyOne.OnConnect", function(data)
+    if not OnlyOne.ENABLED then return end -- Don't run if disabled
     if data.bot == 1 then return end -- Don't run check if the user is a bot
 
     local Steam64 = util.SteamIDTo64(data.networkid)
@@ -35,7 +36,7 @@ hook.Add("player_connect", "OnlyOne.OnConnect", function(data)
             OnlyOne.Debug("Kicking "..data.name.."("..Steam64..")")
             game.KickID(data.networkid, OnlyOne.Config.KickReason)
         end
-        
+
         return
     end
 
@@ -44,6 +45,8 @@ hook.Add("player_connect", "OnlyOne.OnConnect", function(data)
 end)
 
 hook.Add("PlayerDisconnected", "OnlyOne.OnDisconnect", function(Plr)
+    if not OnlyOne.ENABLED then return end -- Don't run if disabled
+    
     local Steam64 = Plr:SteamID64()
     local function removeId()
         OnlyOne.Debug("Removing SteamId " .. Steam64 .. " From " .. OnlyOne.Config.Identifier)

@@ -5,6 +5,7 @@ end
 
 OnlyOne = OnlyOne or {}
 OnlyOne.VERSION = "0.1.4"
+OnlyOne.ENABLED = true
 
 OnlyOne.Load = function(File)
     include(File)
@@ -22,6 +23,7 @@ if not util.IsBinaryModuleInstalled("mysqloo") then
     MsgC(Color(100,100,255,255), "|| ", Color(255,0,0,255), "LOAD FAILED:\n")
     MsgC(Color(100,100,255,255), "||   ", Color(255,0,0,255), "Missing MySQLOO\n")
     MsgC(Color(100,100,255,255), "[]=====[ Only One ]=====[]\n")
+    OnlyOne.ENABLED = false
     return
 end
 

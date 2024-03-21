@@ -4,6 +4,7 @@
 - Registers Player after checks have been made
 - Added `RelogDelay` to config
   - Players cannot rejoin or switch servers until timer is up
+- Disables on severe errors
 
 # CHANGE LOG - V0.1.3
 - Started using `player_connect` instead of `PlayerAuthed`

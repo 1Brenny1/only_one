@@ -44,6 +44,7 @@ end
 function OnlyOne.SQL.DB:onConnectionFailed( err )
     OnlyOne.Error("Failed to connect to database!")
     OnlyOne.Error("Error: " .. err)
+    OnlyOne.Disable("No Database Connection")
 end
 
 -- Initialize Database Connection
