@@ -1,5 +1,6 @@
 # CHANGE LOG - V0.1.4-1
 - Changed back to `GM:PlayerAuthed`
+- Improved Easter Egg
 
 # CHANGE LOG - V0.1.4
 - Brought back `sv_hibernate_think` set on startup
