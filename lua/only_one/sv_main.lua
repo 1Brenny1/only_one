@@ -1,11 +1,10 @@
 OnlyOne = OnlyOne or {}
 
-gameevent.Listen("player_connect")
-hook.Add("player_connect", "OnlyOne.OnConnect", function(data)
+hook.Add("PlayerAuthed", "OnlyOne.OnConnect", function(Plr, SteamId, UniqueId)
     if not OnlyOne.ENABLED then return end -- Don't run if disabled
-    if data.bot == 1 then return end -- Don't run check if the user is a bot
+    if Plr:IsBot() then return end -- Don't run check if the user is a bot
 
-    local Steam64 = util.SteamIDTo64(data.networkid)
+    local Steam64 = Plr:SteamID64()
 
     -- Get All Active Servers
     local query = OnlyOne.SQL.RawQuery("SELECT * FROM OnlyOne_Identifiers")
@@ -30,11 +29,11 @@ hook.Add("player_connect", "OnlyOne.OnConnect", function(data)
     
     if detected then -- If the player is online
         if OnlyOne.Config.UseCommand then
-            OnlyOne.Debug("Running Command on "..data.name.."("..Steam64..")")
+            OnlyOne.Debug("Running Command on "..Plr:Nick().."("..Steam64..")")
             game.ConsoleCommand(string.Replace(OnlyOne.Config.Command, "{}", Steam64))
         else
-            OnlyOne.Debug("Kicking "..data.name.."("..Steam64..")")
-            game.KickID(data.networkid, OnlyOne.Config.KickReason)
+            OnlyOne.Debug("Kicking "..Plr:Nick().."("..Steam64..")")
+            Plr:Kick(OnlyOne.Config.KickReason)
         end
 
         return
