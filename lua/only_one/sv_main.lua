@@ -2,6 +2,7 @@ OnlyOne = OnlyOne or {}
 
 gameevent.Listen("player_connect")
 hook.Add("player_connect", "OnlyOne.OnConnect", function(data)
+    if data.bot == 1 then return end
     local Steam64 = util.SteamIDTo64(data.networkid)
     
 
