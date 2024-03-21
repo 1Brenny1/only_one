@@ -4,7 +4,7 @@ if CLIENT then
 end
 
 OnlyOne = OnlyOne or {}
-OnlyOne.VERSION = "0.1.2-1"
+OnlyOne.VERSION = "0.1.3"
 
 OnlyOne.Load = function(File)
     include(File)
