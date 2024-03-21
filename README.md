@@ -1,3 +1,10 @@
+# CHANGE LOG - V0.1.4
+- Brought back `sv_hibernate_think` set on startup
+- Checks all servers instead of all other servers
+- Registers Player after checks have been made
+- Added `RelogDelay` to config
+  - Players cannot rejoin or switch servers until timer is up
+
 # CHANGE LOG - V0.1.3
 - Started using `player_connect` instead of `PlayerAuthed`
 - Added check for bots
