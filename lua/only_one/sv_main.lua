@@ -1,8 +1,9 @@
 OnlyOne = OnlyOne or {}
 
-
-hook.Add("PlayerAuthed", "OnlyOne.OnConnect", function(Plr, SteamId, UniqueId)
-    local Steam64 = Plr:SteamID64()
+gameevent.Listen("player_connect")
+hook.Add("player_connect", "OnlyOne.OnConnect", function(data)
+    local Steam64 = util.SteamIDTo64(data.networkid)
+    
 
     -- Insert Player Into Current Server
     OnlyOne.SQL.Query("INSERT INTO OnlyOne_"..OnlyOne.Config.Identifier.." (Steam64) VALUES (\""..Steam64.."\")")
@@ -18,11 +19,11 @@ hook.Add("PlayerAuthed", "OnlyOne.OnConnect", function(Plr, SteamId, UniqueId)
             function onlineQuery:onSuccess(data)
                 if #data > 0 then
                     if OnlyOne.Config.UseCommand then
-                        OnlyOne.Debug("Running Command on "..Plr:Nick().."("..Steam64..")")
+                        OnlyOne.Debug("Running Command on "..data.name.."("..Steam64..")")
                         game.ConsoleCommand(string.Replace(OnlyOne.Config.Command, "{}", Steam64))
                     else
-                        OnlyOne.Debug("Kicking "..Plr:Nick().."("..Steam64..")")
-                        Plr:Kick(OnlyOne.Config.KickReason)
+                        OnlyOne.Debug("Kicking "..data.name.."("..Steam64..")")
+                        game.KickID(data.networkid, OnlyOne.Config.KickReason)
                     end
                     
                     detected = true
