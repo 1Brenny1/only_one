@@ -1,5 +1,5 @@
 if CLIENT then 
-    print("Perry Was Here!")
+    MsgC(Color(255,0,0,255), "Perry Was Here!\n")
     return
 end
 
