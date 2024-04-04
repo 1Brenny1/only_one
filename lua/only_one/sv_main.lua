@@ -1,8 +1,22 @@
 OnlyOne = OnlyOne or {}
 
+function hasBypass(Plr)
+    if 
+    table.HasValue(OnlyOne.Config.Whitelist, Plr:SteamID64()) or 
+    table.HasValue(OnlyOne.Config.Whitelist, Plr:SteamID()) or 
+    table.HasValue(OnlyOne.Config.Whitelist, Plr:GetUserGroup())
+    then
+        OnlyOne.Debug("Bypassing Check for " .. Plr:Nick() .. "(" .. Plr:SteamID64() ..")")
+        return true
+    end
+    return  false
+end
+
+
 hook.Add("PlayerAuthed", "OnlyOne.OnConnect", function(Plr, SteamId, UniqueId)
     if not OnlyOne.ENABLED then return end -- Don't run if disabled
     if Plr:IsBot() then return end -- Don't run check if the user is a bot
+    if hasBypass(Plr) then return end
 
     local Steam64 = Plr:SteamID64()
 
