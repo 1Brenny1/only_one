@@ -6,7 +6,7 @@ function hasBypass(Plr)
     table.HasValue(OnlyOne.Config.Whitelist, Plr:SteamID()) or 
     table.HasValue(OnlyOne.Config.Whitelist, Plr:GetUserGroup())
     then
-        OnlyOne.Debug("Bypassing Check for " .. Plr:Nick() .. "(" .. Plr:SteamID64() ..")")
+        OnlyOne.Debug("Bypassing Check for " .. Plr:Nick() .. " (" .. Plr:SteamID64() ..")")
         return true
     end
     return  false

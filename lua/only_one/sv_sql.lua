@@ -33,7 +33,7 @@ function OnlyOne.SQL.DB:onConnected()
     -- Identifiers Table Setup
     OnlyOne.SQL.Query("CREATE TABLE IF NOT EXISTS OnlyOne_Identifiers (Identifier VARCHAR(128) UNIQUE PRIMARY KEY)")
     local insertQuery = OnlyOne.SQL.RawQuery("INSERT INTO OnlyOne_Identifiers (Identifier) VALUES (\"" .. OnlyOne.Config.Identifier .."\")")
-    insertQuery.onError = function(err) OnlyOne.Debug("Indentifier All Ready Exists!") end
+    insertQuery.onError = function(err) OnlyOne.Debug("Indentifier Already Exists!") end
     insertQuery:start()
     
     -- Server Identifier Online Table Setup
