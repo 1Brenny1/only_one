@@ -15,7 +15,7 @@ OnlyOne.Config = {
         "superadmin",
         "STEAM_0:1:000000000",
         "76561199153945255"
-    }
+    },
 
     --[[
         NOTE: This addon requires MySqloo to run
