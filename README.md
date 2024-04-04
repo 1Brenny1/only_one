@@ -1,10 +1,14 @@
 # Only One
-Made By: 1perry_ @ Brenny.zip
+##### Made By: 1perry_ @ Brenny.zip
 
 A simple addon to prevent the `-multirun` flag from being exploited on linked servers.
 
-*Made for the [Atomic Networks](https://atomicnetworks.co/) DarkRP Servers*
+<sup>*Made for the [Atomic Networks](https://atomicnetworks.co/) DarkRP Servers*<sup>
 
+\
+&nbsp;
+
+---
 
 ### CHANGE LOG - V0.1.5
 - Added Whitelist to bypass the check
