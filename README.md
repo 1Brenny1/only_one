@@ -14,6 +14,7 @@ A simple addon to prevent the `-multirun` flag from being exploited on linked se
 - Added Whitelist to bypass the check
   - Supports Usergroups, SteamIds, and Steam64 Ids
 - Setup project description & Updated Change Log Format
+- Fixed Typos
 
 ### CHANGE LOG - V0.1.4-1
 - Changed back to `GM:PlayerAuthed`
