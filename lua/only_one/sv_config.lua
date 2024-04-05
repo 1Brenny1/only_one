@@ -2,9 +2,9 @@ OnlyOne = OnlyOne or {}
 OnlyOne.Config = {
     Identifier = "Server1",
 
-    Command = "sam kickid {} All ready connected to network!",
+    Command = "sam kickid {} Already connected to network!",
     UseCommand = false, -- if false, the user will be kicked with the following reason
-    KickReason = "All ready connected to network!",
+    KickReason = "Already connected to network!",
     
     -- Time until they are marked offline (prevents them from reloging or swapping servers until timer is up)
     RelogDelay = 10, -- Delay is in seconds
